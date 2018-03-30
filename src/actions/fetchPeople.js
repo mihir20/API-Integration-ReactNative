@@ -6,7 +6,7 @@ export const fetchPeopleFromApi = () =>{
        fetch('https://swapi.co/api/people/').then(
            res => res.json()
        ).then(
-         json => dispatch(getPeopleSuccess(json.result))
+         json => dispatch(getPeopleSuccess(json.results))
        ).catch(
            err => dispatch(getPeopleFail(err))
        )
@@ -15,7 +15,7 @@ export const fetchPeopleFromApi = () =>{
 
 export const getPeople = () => {
     return {
-        type:types.FETCHING_PEOPLE,
+        type:types.FETCHING_PEOPLE
     }
 }
 

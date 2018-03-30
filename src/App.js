@@ -1,14 +1,31 @@
 import React from 'react';
 import {
-  Text,
+  Button,
   View
 } from 'react-native';
+import {connect} from 'react-redux';
+import { fetchPeopleFromApi } from './actions/fetchPeople';
 
-const App = () =>{
+
+const App = (props) =>{
+  console.log("people: ",props.people)
   return (
     <View>
-      <Text> hello!!! </Text>
+      <Button onPress={()=> props.getPeople()} title='press' />
     </View>
   )
 }
-export default App;
+
+const mapStateToProps = (state) => {
+  return{
+    people : state.people,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    getPeople : () => dispatch(fetchPeopleFromApi()),
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);
